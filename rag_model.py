@@ -25,14 +25,6 @@ logging.basicConfig(
 # Set API key
 os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
 
-# Dummy FAQ data
-faq_data = [
-    Document(page_content="Q: How to start a stream on StreamKar? A: To start a stream, go to the Stream button and follow the on-screen instructions.", metadata={}),
-    Document(page_content="Q: How to earn money? A: You can earn money through virtual gifts from viewers.", metadata={}),
-    Document(page_content="Q: How to withdraw earnings? A: Go to Wallet -> Withdraw and link your bank account.", metadata={}),
-    Document(page_content="Q: How can i see my payment history A: Go to Settings -> Click on payments history there you can see you past payment history", metadata={}),
-    Document(page_content="Q: How can i download a uploaded stream A: sorry for now you cannot download any uploaded stream", metadata={}),
-]
 
 # Similarity threshold for valid FAQ match
 SIMILARITY_THRESHOLD = 0.50
@@ -47,6 +39,9 @@ def load_faq_from_db():
     try:
         faqs = session.query(FAQ).filter(FAQ.is_active == True).all()
         faq_data = []
+        if not faqs:
+            doc = Document(page_content="Q: How to start a stream on StreamKar? A: To start a stream, go to the Stream button and follow the on-screen instructions.", metadata={})
+            faq_data.append(doc)
         for faq in faqs:
             doc = Document(
                 page_content=f"Q: {faq.question} A: {faq.answer}",
@@ -109,6 +104,7 @@ def calculate_similarity_score(query_embedding, doc_embedding):
     return similarity
 
 # Initialize model
+initialize_faq()
 retriever, llm = create_chat_model()
 
 def handle_with_llm(query,preffered_language):

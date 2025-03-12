@@ -114,7 +114,7 @@ async def websocket_endpoint(websocket: WebSocket, user_id: str):
         logging.info(f"WebSocket connection closed for user: {user_id}")
         await websocket.close()
 
-initialize_faq()
+
 
 if __name__ == "__main__":
     import uvicorn
