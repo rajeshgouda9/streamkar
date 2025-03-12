@@ -1,5 +1,10 @@
 ##🚀 StreamKar AI Customer Support Bot
 
+#Prerequisites
+
+1. you should have a postgres db running on local you can change the cred in models.py for the database
+2. create a database called streamkar
+
 #📥 Setup Instructions
 
 1. Clone the Repository
