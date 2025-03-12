@@ -34,3 +34,16 @@
    "preferred_language": "Hindi",
    "question": "what is your name"
    }
+
+## model Selection
+
+1. I am using gemeni because i dont have openai creds
+2. Understand and classify user queries we can use a zeroshot model to check the input type from selected label and redirect the request accordingily
+
+3. we can also train a few shot model for the same the response time would be around 50ms for zero or fewshot model in a gpu machine
+
+4. we can use google translate api but we can also ask llm to respond in a user preferred language directly and if user inp is not in english then convert it to english
+
+5. Redis for caching frequently asked queries. pending
+
+6. Celery for background tasks (e.g., training, logging). pending

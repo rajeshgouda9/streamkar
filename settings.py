@@ -1,3 +1,3 @@
 import os
 
-GOOGLE_API_KEY = "AIzaSyC5tE6SBzeHCn3ECAGvboqMSJ-ZYu0Qbf4"
+GOOGLE_API_KEY = "your-key-here"
